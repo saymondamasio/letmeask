@@ -1,5 +1,7 @@
 import ReactModal from 'react-modal'
 import trash from '../../../assets/images/trash.svg'
+import { Button } from '../../Button'
+import styles from './styles.module.scss'
 
 interface Props {
   isOpen: boolean
@@ -16,6 +18,8 @@ export function ConfirmRemoveQuestionModal({
     <ReactModal
       isOpen={isOpen}
       onRequestClose={onClose}
+      className={`modal ${styles.container}`}
+      overlayClassName="modal-overlay"
       contentLabel="Example Modal"
     >
       <img src={trash} alt="" />
@@ -24,12 +28,16 @@ export function ConfirmRemoveQuestionModal({
       <p>Tem certeza que você deseja excluir esta pergunta?</p>
 
       <div>
-        <button type="button" onClick={onClose}>
+        <Button type="button" onClick={onClose} className={styles.cancelButton}>
           Cancelar
-        </button>
-        <button type="button" onClick={handleConfirm}>
-          Sim, encerrar
-        </button>
+        </Button>
+        <Button
+          type="button"
+          onClick={handleConfirm}
+          className={styles.confirmButton}
+        >
+          Sim, excluir
+        </Button>
       </div>
     </ReactModal>
   )

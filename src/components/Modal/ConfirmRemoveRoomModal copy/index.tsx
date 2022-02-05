@@ -1,5 +1,7 @@
 import ReactModal from 'react-modal'
 import close from '../../../assets/images/close.svg'
+import { Button } from '../../Button'
+import styles from './styles.module.scss'
 
 interface Props {
   isOpen: boolean
@@ -15,6 +17,8 @@ export function ConfirmRemoveRoomModal({
   return (
     <ReactModal
       isOpen={isOpen}
+      overlayClassName="modal-overlay"
+      className={`modal ${styles.container}`}
       onRequestClose={onClose}
       contentLabel="Example Modal"
     >
@@ -24,12 +28,16 @@ export function ConfirmRemoveRoomModal({
       <p>Tem certeza que você deseja encerrar esta sala?</p>
 
       <div>
-        <button type="button" onClick={onClose}>
+        <Button className={styles.cancelButton} type="button" onClick={onClose}>
           Cancelar
-        </button>
-        <button type="button" onClick={handleConfirm}>
+        </Button>
+        <Button
+          className={styles.confirmButton}
+          type="button"
+          onClick={handleConfirm}
+        >
           Sim, encerrar
-        </button>
+        </Button>
       </div>
     </ReactModal>
   )
