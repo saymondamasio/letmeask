@@ -1,7 +1,7 @@
 import { push, ref, remove } from 'firebase/database'
 import { FormEvent, useState } from 'react'
 import toast from 'react-hot-toast'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import avatar from '../../assets/images/avatar.svg'
 import { ReactComponent as Like } from '../../assets/images/like.svg'
 import logo from '../../assets/images/logo.svg'
@@ -78,7 +78,9 @@ export function Room() {
     <div className={styles.container}>
       <header>
         <div className={styles.content}>
-          <img src={logo} alt="Letmeask" />
+          <Link to="/">
+            <img src={logo} alt="Letmeask" />
+          </Link>
           {roomId && <RoomCode code={roomId} />}
         </div>
       </header>

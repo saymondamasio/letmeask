@@ -39,7 +39,7 @@ export function Home() {
       return
     }
 
-    if (!roomRef.val().closedAt) {
+    if (roomRef.val().closedAt) {
       toast.error('Sala foi fechada')
       return
     }

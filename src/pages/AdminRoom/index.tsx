@@ -1,7 +1,7 @@
 import { ref, remove, update } from 'firebase/database'
 import { useState } from 'react'
 import Modal from 'react-modal'
-import { useNavigate, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import answerImg from '../../assets/images/answer.svg'
 import checkImg from '../../assets/images/check.svg'
 import deleteImg from '../../assets/images/delete.svg'
@@ -25,14 +25,9 @@ export function AdminRoom() {
   const [isOpenQuestionModal, setIsOpenQuestionModal] = useState(false)
   const [isOpenRoomModal, setIsOpenRoomModal] = useState(false)
   const navigate = useNavigate()
+  const [selectedIdRemoveQuestion, setSelectedIdRemoveQuestion] = useState('')
 
   const { questions, title } = useRoom(String(roomId))
-
-  async function handleDeleteQuestion(id: string) {
-    const questionRef = ref(database, `rooms/${roomId}/questions/${id}`)
-    await remove(questionRef)
-    setIsOpenQuestionModal(false)
-  }
 
   async function handleCheckQuestionAsAnswered(questionId: string) {
     const questionRef = ref(database, `rooms/${roomId}/questions/${questionId}`)
@@ -45,6 +40,20 @@ export function AdminRoom() {
     await update(questionRef, {
       isHighlighted: true,
     })
+  }
+
+  async function handleRemoveQuestion(questionId: string) {
+    setIsOpenQuestionModal(true)
+    setSelectedIdRemoveQuestion(questionId)
+  }
+
+  async function confirmRemoveQuestionModal() {
+    const questionRef = ref(
+      database,
+      `rooms/${roomId}/questions/${selectedIdRemoveQuestion}`
+    )
+    await remove(questionRef)
+    setIsOpenQuestionModal(false)
   }
 
   async function handleEndRoom() {
@@ -61,7 +70,9 @@ export function AdminRoom() {
     <div className={styles.container}>
       <header>
         <div className={styles.content}>
-          <img src={logo} alt="Letmeask" />
+          <Link to="/">
+            <img src={logo} alt="Letmeask" />
+          </Link>
           <div>
             {roomId && <RoomCode code={roomId} />}
             <Button onClick={() => setIsOpenRoomModal(true)} isOutlined>
@@ -115,13 +126,13 @@ export function AdminRoom() {
                 )}
                 <button
                   type="button"
-                  onClick={() => setIsOpenQuestionModal(true)}
+                  onClick={() => handleRemoveQuestion(question.id)}
                 >
                   <img src={deleteImg} alt="Deletar pergunta" />
                 </button>
 
                 <ConfirmRemoveQuestionModal
-                  handleConfirm={() => handleDeleteQuestion(question.id)}
+                  handleConfirm={confirmRemoveQuestionModal}
                   isOpen={isOpenQuestionModal}
                   onClose={() => setIsOpenQuestionModal(false)}
                 />
