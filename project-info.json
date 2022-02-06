@@ -1,0 +1,45 @@
+{
+  "name": "Letmeask",
+  "videos": [
+    "https://raw.githubusercontent.com/saymondamasio/letmeask/main/.github/demonstration.mp4"
+  ],
+  "images": [
+    "https://raw.githubusercontent.com/saymondamasio/letmeask/main/.github/screenshot-1.jpg",
+    "https://raw.githubusercontent.com/saymondamasio/letmeask/main/.github/screenshot-2.jpg",
+    "https://raw.githubusercontent.com/saymondamasio/letmeask/main/.github/screenshot-3.jpg",
+    "https://raw.githubusercontent.com/saymondamasio/letmeask/main/.github/screenshot-4.jpg"
+  ],
+  "description": "Essa aplicação tem como objetivo ajudar aos criadores de lives gerenciar as muitas perguntas feitas durante o evento. O administrador pode criar uma sala e compartilhar o código com sua audiência, assim qualquer um que tem o código pode entrar na sala e fazer sua pergunta, o administrador pode excluir, destacar ou dar como respondida a pergunta.",
+  "short_description": "Uma aplicação web para ranqueamento de perguntas",
+  "link_preview": "https://letmeask-d4501.web.app",
+  "techs": [
+    {
+      "name": "React.js",
+      "url": "https://reactjs.org/"
+    },
+    {
+      "name": "Typescript",
+      "url": "https://www.typescriptlang.org/"
+    },
+    {
+      "name": "Firebase Realtime Database",
+      "url": "https://firebase.google.com/"
+    },
+    {
+      "name": "Firebase Auth",
+      "url": "https://firebase.google.com/"
+    },
+    {
+      "name": "SASS",
+      "url": "https://sass-lang.com/"
+    },
+    {
+      "name": "Eslint",
+      "url": "https://eslint.org/"
+    },
+    {
+      "name": "Prettier",
+      "url": "https://prettier.io/"
+    }
+  ]
+}

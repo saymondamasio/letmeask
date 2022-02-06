@@ -1,5 +1,5 @@
 import { ref, remove, update } from 'firebase/database'
-import { useContext, useState } from 'react'
+import { useState } from 'react'
 import Modal from 'react-modal'
 import { useNavigate, useParams } from 'react-router-dom'
 import { ReactComponent as AnswerIcon } from '../../assets/images/answer.svg'
@@ -11,7 +11,6 @@ import { ConfirmRemoveQuestionModal } from '../../components/Modal/ConfirmRemove
 import { ConfirmRemoveRoomModal } from '../../components/Modal/ConfirmRemoveRoomModal copy'
 import { Question } from '../../components/Question'
 import { RoomCode } from '../../components/RoomCode'
-import { ThemeContext } from '../../contexts/ThemeContext'
 import { useRoom } from '../../hooks/useRoom'
 import { database } from '../../services/firebase'
 import styles from './styles.module.scss'
@@ -27,7 +26,6 @@ export function AdminRoom() {
   const [isOpenRoomModal, setIsOpenRoomModal] = useState(false)
   const navigate = useNavigate()
   const [selectedIdRemoveQuestion, setSelectedIdRemoveQuestion] = useState('')
-  const { theme } = useContext(ThemeContext)
 
   const { questions, title } = useRoom(String(roomId))
 

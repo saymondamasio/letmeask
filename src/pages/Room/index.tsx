@@ -1,5 +1,5 @@
 import { push, ref, remove } from 'firebase/database'
-import { FormEvent, useContext, useState } from 'react'
+import { FormEvent, useState } from 'react'
 import toast from 'react-hot-toast'
 import { useParams } from 'react-router-dom'
 import avatar from '../../assets/images/avatar.svg'
@@ -8,7 +8,6 @@ import { Button } from '../../components/Button'
 import Header from '../../components/Header'
 import { Question } from '../../components/Question'
 import { RoomCode } from '../../components/RoomCode'
-import { ThemeContext } from '../../contexts/ThemeContext'
 import { useAuth } from '../../hooks/useAuth'
 import { useRoom } from '../../hooks/useRoom'
 import { database } from '../../services/firebase'
@@ -21,7 +20,6 @@ type Params = {
 export function Room() {
   const { id: roomId } = useParams<Params>()
   const [newQuestion, setNewQuestion] = useState('')
-  const { theme } = useContext(ThemeContext)
   const { user } = useAuth()
 
   const { questions, title } = useRoom(String(roomId))
