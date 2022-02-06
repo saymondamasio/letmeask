@@ -1,18 +1,16 @@
 import { ref, remove, update } from 'firebase/database'
 import { useContext, useState } from 'react'
 import Modal from 'react-modal'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { ReactComponent as AnswerIcon } from '../../assets/images/answer.svg'
 import { ReactComponent as CheckIcon } from '../../assets/images/check.svg'
 import { ReactComponent as DeleteIcon } from '../../assets/images/delete.svg'
-import logoDark from '../../assets/images/logo-dark.svg'
-import logo from '../../assets/images/logo.svg'
 import { Button } from '../../components/Button'
+import Header from '../../components/Header'
 import { ConfirmRemoveQuestionModal } from '../../components/Modal/ConfirmRemoveQuestionModal'
 import { ConfirmRemoveRoomModal } from '../../components/Modal/ConfirmRemoveRoomModal copy'
 import { Question } from '../../components/Question'
 import { RoomCode } from '../../components/RoomCode'
-import { ThemeSwitcher } from '../../components/ThemeSwither'
 import { ThemeContext } from '../../contexts/ThemeContext'
 import { useRoom } from '../../hooks/useRoom'
 import { database } from '../../services/firebase'
@@ -72,30 +70,22 @@ export function AdminRoom() {
 
   return (
     <div className={styles.container}>
-      <header>
-        <div className={styles.content}>
-          <Link to="/">
-            {theme === 'dark' ? (
-              <img src={logoDark} alt="Letmeask" />
-            ) : (
-              <img src={logo} alt="Letmeask" />
-            )}
-          </Link>
-          <div>
-            <ThemeSwitcher />
-            {roomId && <RoomCode code={roomId} />}
-            <Button onClick={() => setIsOpenRoomModal(true)} isOutlined>
-              Encerrar sala
-            </Button>
+      <Header classContainer={styles.header}>
+        {roomId && <RoomCode code={roomId} />}
+        <Button
+          className={styles.buttonCloseRoom}
+          onClick={() => setIsOpenRoomModal(true)}
+          isOutlined
+        >
+          Encerrar sala
+        </Button>
 
-            <ConfirmRemoveRoomModal
-              handleConfirm={handleEndRoom}
-              isOpen={isOpenRoomModal}
-              onClose={() => setIsOpenRoomModal(false)}
-            />
-          </div>
-        </div>
-      </header>
+        <ConfirmRemoveRoomModal
+          handleConfirm={handleEndRoom}
+          isOpen={isOpenRoomModal}
+          onClose={() => setIsOpenRoomModal(false)}
+        />
+      </Header>
 
       <main>
         <div className={styles.roomTitle}>

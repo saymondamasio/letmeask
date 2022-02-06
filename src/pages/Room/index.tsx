@@ -1,15 +1,13 @@
 import { push, ref, remove } from 'firebase/database'
 import { FormEvent, useContext, useState } from 'react'
 import toast from 'react-hot-toast'
-import { Link, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import avatar from '../../assets/images/avatar.svg'
 import { ReactComponent as Like } from '../../assets/images/like.svg'
-import logoDark from '../../assets/images/logo-dark.svg'
-import logo from '../../assets/images/logo.svg'
 import { Button } from '../../components/Button'
+import Header from '../../components/Header'
 import { Question } from '../../components/Question'
 import { RoomCode } from '../../components/RoomCode'
-import { ThemeSwitcher } from '../../components/ThemeSwither'
 import { ThemeContext } from '../../contexts/ThemeContext'
 import { useAuth } from '../../hooks/useAuth'
 import { useRoom } from '../../hooks/useRoom'
@@ -80,22 +78,7 @@ export function Room() {
 
   return (
     <div className={styles.container}>
-      <header>
-        <div className={styles.content}>
-          <Link to="/">
-            {theme === 'dark' ? (
-              <img src={logoDark} alt="Letmeask" />
-            ) : (
-              <img src={logo} alt="Letmeask" />
-            )}
-          </Link>
-          <div>
-            <ThemeSwitcher />
-
-            {roomId && <RoomCode code={roomId} />}
-          </div>
-        </div>
-      </header>
+      <Header>{roomId && <RoomCode code={roomId} />}</Header>
 
       <main>
         <div className={styles.roomTitle}>

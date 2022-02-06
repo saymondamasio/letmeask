@@ -128,3 +128,9 @@
     }
   }
 }
+
+@media (max-width: 768px) {
+  .container aside {
+    display: none;
+  }
+}

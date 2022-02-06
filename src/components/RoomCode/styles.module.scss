@@ -28,3 +28,9 @@
     color: var(--title);
   }
 }
+
+@media (max-width: 480px) {
+  .container span {
+    display: none;
+  }
+}

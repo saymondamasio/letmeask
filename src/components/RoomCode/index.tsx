@@ -1,3 +1,4 @@
+import toast from 'react-hot-toast'
 import copy from '../../assets/images/copy.svg'
 import styles from './styles.module.scss'
 
@@ -8,6 +9,8 @@ type Props = {
 export function RoomCode({ code }: Props) {
   function copyRoomCodeToClipboard() {
     navigator.clipboard.writeText(code)
+
+    toast.success('Código da sala copiado!')
   }
 
   return (
