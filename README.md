@@ -8,6 +8,8 @@
 
 <p align="center">Uma aplicação web para ranqueamento de perguntas</p>
 
+https://user-images.githubusercontent.com/50559834/152704723-24c5a2c4-e028-4034-a796-68ff77b11ef7.mp4
+
 <p align="center">
   <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/saymondamasio/letmeask">
 
