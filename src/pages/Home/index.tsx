@@ -4,9 +4,11 @@ import toast from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
 import googleIcon from '../../assets/images/google-icon.svg'
 import illustration from '../../assets/images/illustration.svg'
+import logoDark from '../../assets/images/logo-dark.svg'
 import logo from '../../assets/images/logo.svg'
 import { Button } from '../../components/Button'
 import { AuthContext } from '../../contexts/AuthContext'
+import { ThemeContext } from '../../contexts/ThemeContext'
 import { database } from '../../services/firebase'
 import styles from './styles.module.scss'
 
@@ -14,6 +16,7 @@ export function Home() {
   const navigate = useNavigate()
   const { signInWithGoogle, user } = useContext(AuthContext)
   const [roomCode, setRoomCode] = useState('')
+  const { theme } = useContext(ThemeContext)
 
   async function handleCreateRoom() {
     if (!user) {
@@ -60,7 +63,11 @@ export function Home() {
 
       <main>
         <div className={styles.mainContent}>
-          <img src={logo} alt="Letmeask" />
+          {theme === 'dark' ? (
+            <img src={logoDark} alt="Letmeask" />
+          ) : (
+            <img src={logo} alt="Letmeask" />
+          )}
           <button
             onClick={handleCreateRoom}
             className={styles.createRoom}

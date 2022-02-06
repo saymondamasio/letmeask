@@ -1,15 +1,18 @@
 import { push, ref, set } from 'firebase/database'
-import { FormEvent, useState } from 'react'
+import { FormEvent, useContext, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import illustration from '../../assets/images/illustration.svg'
+import logoDark from '../../assets/images/logo-dark.svg'
 import logo from '../../assets/images/logo.svg'
 import { Button } from '../../components/Button'
+import { ThemeContext } from '../../contexts/ThemeContext'
 import { useAuth } from '../../hooks/useAuth'
 import { database } from '../../services/firebase'
 import styles from './styles.module.scss'
 
 export function NewRoom() {
   const [name, setName] = useState('')
+  const { theme } = useContext(ThemeContext)
 
   const { user } = useAuth()
   const navigate = useNavigate()
@@ -46,7 +49,11 @@ export function NewRoom() {
 
       <main>
         <div className={styles.mainContent}>
-          <img src={logo} alt="Letmeask" />
+          {theme === 'dark' ? (
+            <img src={logoDark} alt="Letmeask" />
+          ) : (
+            <img src={logo} alt="Letmeask" />
+          )}
           <h2>Criar uma nova sala</h2>
           <form onSubmit={handleCreateRoom}>
             <input

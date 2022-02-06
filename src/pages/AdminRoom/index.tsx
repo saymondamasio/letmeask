@@ -1,16 +1,19 @@
 import { ref, remove, update } from 'firebase/database'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import Modal from 'react-modal'
 import { Link, useNavigate, useParams } from 'react-router-dom'
-import answerImg from '../../assets/images/answer.svg'
-import checkImg from '../../assets/images/check.svg'
-import deleteImg from '../../assets/images/delete.svg'
+import { ReactComponent as AnswerIcon } from '../../assets/images/answer.svg'
+import { ReactComponent as CheckIcon } from '../../assets/images/check.svg'
+import { ReactComponent as DeleteIcon } from '../../assets/images/delete.svg'
+import logoDark from '../../assets/images/logo-dark.svg'
 import logo from '../../assets/images/logo.svg'
 import { Button } from '../../components/Button'
 import { ConfirmRemoveQuestionModal } from '../../components/Modal/ConfirmRemoveQuestionModal'
 import { ConfirmRemoveRoomModal } from '../../components/Modal/ConfirmRemoveRoomModal copy'
 import { Question } from '../../components/Question'
 import { RoomCode } from '../../components/RoomCode'
+import { ThemeSwitcher } from '../../components/ThemeSwither'
+import { ThemeContext } from '../../contexts/ThemeContext'
 import { useRoom } from '../../hooks/useRoom'
 import { database } from '../../services/firebase'
 import styles from './styles.module.scss'
@@ -26,6 +29,7 @@ export function AdminRoom() {
   const [isOpenRoomModal, setIsOpenRoomModal] = useState(false)
   const navigate = useNavigate()
   const [selectedIdRemoveQuestion, setSelectedIdRemoveQuestion] = useState('')
+  const { theme } = useContext(ThemeContext)
 
   const { questions, title } = useRoom(String(roomId))
 
@@ -71,9 +75,14 @@ export function AdminRoom() {
       <header>
         <div className={styles.content}>
           <Link to="/">
-            <img src={logo} alt="Letmeask" />
+            {theme === 'dark' ? (
+              <img src={logoDark} alt="Letmeask" />
+            ) : (
+              <img src={logo} alt="Letmeask" />
+            )}
           </Link>
           <div>
+            <ThemeSwitcher />
             {roomId && <RoomCode code={roomId} />}
             <Button onClick={() => setIsOpenRoomModal(true)} isOutlined>
               Encerrar sala
@@ -111,16 +120,13 @@ export function AdminRoom() {
                       type="button"
                       onClick={() => handleCheckQuestionAsAnswered(question.id)}
                     >
-                      <img
-                        src={checkImg}
-                        alt="Marcar pergunta como respondida"
-                      />
+                      <CheckIcon />
                     </button>
                     <button
                       type="button"
                       onClick={() => handleHighlightQuestion(question.id)}
                     >
-                      <img src={answerImg} alt="Dar destaque a pergunta" />
+                      <AnswerIcon />
                     </button>
                   </>
                 )}
@@ -128,7 +134,7 @@ export function AdminRoom() {
                   type="button"
                   onClick={() => handleRemoveQuestion(question.id)}
                 >
-                  <img src={deleteImg} alt="Deletar pergunta" />
+                  <DeleteIcon />
                 </button>
 
                 <ConfirmRemoveQuestionModal

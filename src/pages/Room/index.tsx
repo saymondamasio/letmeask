@@ -1,13 +1,16 @@
 import { push, ref, remove } from 'firebase/database'
-import { FormEvent, useState } from 'react'
+import { FormEvent, useContext, useState } from 'react'
 import toast from 'react-hot-toast'
 import { Link, useParams } from 'react-router-dom'
 import avatar from '../../assets/images/avatar.svg'
 import { ReactComponent as Like } from '../../assets/images/like.svg'
+import logoDark from '../../assets/images/logo-dark.svg'
 import logo from '../../assets/images/logo.svg'
 import { Button } from '../../components/Button'
 import { Question } from '../../components/Question'
 import { RoomCode } from '../../components/RoomCode'
+import { ThemeSwitcher } from '../../components/ThemeSwither'
+import { ThemeContext } from '../../contexts/ThemeContext'
 import { useAuth } from '../../hooks/useAuth'
 import { useRoom } from '../../hooks/useRoom'
 import { database } from '../../services/firebase'
@@ -20,6 +23,7 @@ type Params = {
 export function Room() {
   const { id: roomId } = useParams<Params>()
   const [newQuestion, setNewQuestion] = useState('')
+  const { theme } = useContext(ThemeContext)
   const { user } = useAuth()
 
   const { questions, title } = useRoom(String(roomId))
@@ -79,9 +83,17 @@ export function Room() {
       <header>
         <div className={styles.content}>
           <Link to="/">
-            <img src={logo} alt="Letmeask" />
+            {theme === 'dark' ? (
+              <img src={logoDark} alt="Letmeask" />
+            ) : (
+              <img src={logo} alt="Letmeask" />
+            )}
           </Link>
-          {roomId && <RoomCode code={roomId} />}
+          <div>
+            <ThemeSwitcher />
+
+            {roomId && <RoomCode code={roomId} />}
+          </div>
         </div>
       </header>
 
@@ -147,7 +159,7 @@ export function Room() {
                     {question.likeCount > 0 && (
                       <span>{question.likeCount}</span>
                     )}
-                    <Like stroke="" />
+                    <Like />
                   </button>
                 )}
               </Question>

@@ -4,9 +4,93 @@
   box-sizing: border-box;
 }
 
-:root {
+body[data-theme='light'] {
   --background: #f8f8f8;
-  --text: #29292e;
+
+  --text: #737380;
+  --title: #29292e;
+
+  --input-border: #a8a8b3;
+
+  --line-border: #e2e2e2;
+
+  --button-login-google-background: #ea4335;
+  --button-login-google-text: #fefefe;
+
+  --box-question-background: #fefefe;
+  --box-question-answered-background: #dbdcdd;
+  --box-question-highlighted-background: #f4f0ff;
+  --box-question-highlighted-border: #835afd;
+
+  --textarea-question-background: #fefefe;
+
+  --confirm-button-background: #e73f5d;
+  --confirm-button-text: #fefefe;
+  --cancel-button-background: #dbdcdd;
+  --cancel-button-text: #737380;
+
+  --badge-questions-background: #e559f9;
+  --badge-questions-text: #fff;
+
+  --like-button-text: #835afd;
+  --buttons-actions-admin-text: #737380;
+
+  --link-color: #e559f9;
+
+  --modal-overlay: rgba(5, 2, 6, 0.4);
+  --modal-background: #f8f8f8;
+
+  --purple: #835afd;
+  --white: #fff;
+  --gray: #f8f8f8;
+
+  --toggle-button-color-hover: #5965e0;
+  --toggle-button-color: #777777;
+}
+
+body[data-theme='dark'] {
+  --background: #313131;
+
+  --text: #e0e0f9;
+  --title: #ffffff;
+
+  --input-background: #dcdcdc;
+  --input-border: #835afd;
+
+  --line-border: #835afd;
+
+  --button-login-google-background: #ea4335;
+  --button-login-google-text: #fefefe;
+
+  --box-question-background: #404040;
+  --box-question-answered-background: #454545;
+  --box-question-highlighted-background: #835afd;
+  --box-question-highlighted-border: #fff;
+
+  --like-button-text: #835afd;
+  --buttons-actions-admin-text: #fff;
+
+  --textarea-question-background: #c0c0c0;
+
+  --confirm-button-background: #e73f5d;
+  --confirm-button-text: #fefefe;
+  --cancel-button-background: #dbdcdd;
+  --cancel-button-text: #737380;
+
+  --badge-questions-background: #e559f9;
+  --badge-questions-text: #fff;
+
+  --link-color: #e559f9;
+
+  --modal-overlay: rgba(5, 2, 6, 0.4);
+  --modal-background: #6f6f6f;
+
+  --purple: #835afd;
+  --white: #fff;
+  --gray: #f8f8f8;
+
+  --toggle-button-color-hover: #ffff01;
+  --toggle-button-color: #fff;
 }
 
 body {
@@ -22,7 +106,7 @@ textarea {
 }
 
 .modal {
-  background: #f8f8f8;
+  background: var(--modal-background);
   border-radius: 8px;
 }
 
@@ -34,5 +118,5 @@ textarea {
   align-items: center;
   justify-content: center;
 
-  background: rgba($color: #050206, $alpha: 0.3);
+  background: var(--modal-overlay);
 }

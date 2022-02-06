@@ -1,0 +1,19 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 1rem;
+  background-color: transparent;
+
+  border: none;
+  font-size: 0;
+}
+
+.container:hover svg {
+  stroke: var(--toggle-button-color-hover);
+}
+
+.container svg {
+  stroke: var(--toggle-button-color);
+}

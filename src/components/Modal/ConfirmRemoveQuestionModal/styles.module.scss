@@ -22,7 +22,7 @@
 
     /* Black */
 
-    color: #29292e;
+    color: var(--title);
   }
 
   > p {
@@ -39,7 +39,7 @@
 
     /* Gray/Dark */
 
-    color: #737380;
+    color: var(--text);
   }
 
   > div {
@@ -50,11 +50,12 @@
   }
 
   .confirmButton {
-    background: #e73f5d;
+    background: var(--confirm-button-background);
+    color: var(--confirm-button-text);
   }
 
   .cancelButton {
-    color: #737380;
-    background-color: #dbdcdd;
+    color: var(--cancel-button-text);
+    background-color: var(--cancel-button-background);
   }
 }
